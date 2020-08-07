@@ -23,12 +23,31 @@ public class IOSTest extends Practice{
 		
 		//works fine
     	scrollDown();
+    	
+    	driver.findElementByAccessibilityId("Steppers").click();
+    	
+    	driver.findElementByXPath("(//XCUIElementTypeButton[@name=\"Increment\"])[1]").click();
+    	driver.findElementByXPath("(//XCUIElementTypeButton[@name=\"Increment\"])[1]").click();
+    	
+    	String defaultNumber = driver.findElementsByClassName("XCUIElementTypeStaticText").get(1).getAttribute("value");
+    	
+    	System.out.println(defaultNumber);
+    	
+    	driver.navigate().back();
+    	
+    	driver.findElementByAccessibilityId("Picker View").click();
+    	
+    	//using different selectors
+    	
+    	driver.findElementByAccessibilityId("Green color component value").sendKeys("250");
+    	
+    	driver.findElementsByClassName("XCUIElementTypePickerWheel").get(0).sendKeys("50");
+    	
+    	driver.findElementByXPath("//XCUIElementTypePickerWheel[@name=\"Blue color component value\"]").sendKeys("130");
+    	
+    	
 		
-		//need to improve
-//		scrollDownToElement("Search Bars");
 
-    	//doesn't work
-//		scrollDownToElement();
 
 	}
 	
@@ -44,23 +63,6 @@ public class IOSTest extends Practice{
 			driver.executeScript("mobile: scroll", args);
 	}
 		
-		public static void scrollDownToElement(String accessibilityID) {
-			
-			Map<String, Object> args = new HashMap<String, Object>();
-			args.put("direction", "down");
-			args.put("name", accessibilityID);
-			driver.executeScript("mobile: scroll", args);
-		}
 		
-		public static void scrollDownToElement() {
-			// scroll back to the first item in the list
-			MobileElement list = driver.findElement(By.xpath("//XCUIElementTypeStaticText[@name=\"Search Bars\"]"));
-			Map<String, Object> args = new HashMap<String, Object>();
-			args.put("direction", "down");
-			args.put("name", null);
-			args.put("element", list.getId());
-			driver.executeScript("mobile: scroll", args);
-		}
-
-
+		
 }
